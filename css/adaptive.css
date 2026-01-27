@@ -1,0 +1,101 @@
+/* adaptive.css */
+
+/* Базовые отступы безопасности для всех секций */
+.header, .main-title, .description-txt, .guests, .place {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    box-sizing: border-box !important;
+}
+
+
+/* --- АДАПТИВ ШАПКИ --- */
+@media (max-width: 1024px) {
+    .header {
+        flex-direction: column !important;
+        padding: 30px 20px !important;
+        gap: 20px !important;
+        max-width: 100% !important;
+    }
+    .logo, .logo img {
+        width: 100px !important;
+        height: 100px !important;
+        margin: 0 auto !important;
+    }
+    .links ul {
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        gap: 15px !important;
+        padding: 0 !important;
+    }
+    .links ul li {
+        margin: 0 10px !important;
+    }
+}
+
+/* --- ПЛАВНОЕ УМЕНЬШЕНИЕ ШРИФТОВ --- */
+@media (max-width: 1200px) {
+    .place-title { font-size: 34px !important; }
+    .description-txt { font-size: 24px !important; }
+}
+
+@media (max-width: 768px) {
+    .main-title-text { font-size: 24px !important; }
+    .description-title { font-size: 28px !important; padding-bottom: 80px !important; }
+    .description-txt { font-size: 18px !important; }
+    .place-title { font-size: 26px !important; }
+    .place-time { font-size: 24px !important; }
+}
+
+/* --- ЛОГИКА СЕТКИ И СЛАЙДЕРА --- */
+
+/* Десктоп и Планшет: используем ваши исходные Grid-стили */
+@media (min-width: 680px) {
+    .swiper-pagination { display: none !important; }
+}
+
+/* Мобильный: Активируем Swiper (до 650px) */
+@media (max-width: 679px) {
+    .guests {
+        overflow: hidden !important;
+        padding-bottom: 150px !important; /* Место для точек */
+    }
+
+    .guest-items.swiper-wrapper {
+        display: flex !important;
+        flex-direction: row !important;
+        grid-template-columns: none !important;
+    }
+
+    .guest-item.swiper-slide {
+        width: 100% !important;
+        margin: 0 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        transform: translate3d(0, 0, 0) !important;
+    }
+
+    .guest-item-img, .guest-item-img1, .guest-item-img img {
+        width: 260px !important;
+        height: 260px !important;
+        margin-bottom: 20px !important;
+    }
+}
+
+/* --- СТИЛИЗАЦИЯ ТОЧЕК (ПАГИНАЦИЯ) --- */
+.swiper-pagination {
+    bottom: 40px !important;
+    position: absolute !important;
+}
+
+.swiper-pagination-bullet {
+    background: rgba(255, 255, 255, 0.4) !important;
+    opacity: 1 !important;
+}
+
+.swiper-pagination-bullet-active {
+    background: #fff !important;
+    width: 30px !important; /* Форма пилюли */
+    border-radius: 5px !important;
+    transition: width 0.3s ease;
+}
