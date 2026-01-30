@@ -1,101 +1,240 @@
-/* adaptive.css */
-
-/* Базовые отступы безопасности для всех секций */
-.header, .main-title, .description-txt, .guests, .place {
-    padding-left: 20px !important;
-    padding-right: 20px !important;
-    box-sizing: border-box !important;
-}
-
-
-/* --- АДАПТИВ ШАПКИ --- */
-@media (max-width: 1024px) {
+@media screen and (max-width: 1350px) {
     .header {
-        flex-direction: column !important;
-        padding: 30px 20px !important;
-        gap: 20px !important;
-        max-width: 100% !important;
+        padding-left: 30px;
+        padding-right: 30px;
     }
-    .logo, .logo img {
-        width: 100px !important;
-        height: 100px !important;
-        margin: 0 auto !important;
+
+    .description-container {
+        padding-left: 30px;
+        padding-right: 30px;
     }
-    .links ul {
-        flex-wrap: wrap !important;
-        justify-content: center !important;
-        gap: 15px !important;
-        padding: 0 !important;
+
+    .container {
+        padding-left: 30px;
+        padding-right: 30px;
     }
+}
+
+@media (max-width: 1116px) {
+    .header {
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+
     .links ul li {
-        margin: 0 10px !important;
+        margin: 0 20px; /* Уменьшаем расстояние между ссылками */
+    }
+
+    .link {
+        font-size: 18px; /* Немного уменьшаем шрифт */
+    }
+
+    .main-title {
+        font-size: 20px;
+    }
+
+    .guests h2 {
+        font-size: 25px;
+    }
+
+    .place-title {
+        font-size: 35px;
     }
 }
 
-/* --- ПЛАВНОЕ УМЕНЬШЕНИЕ ШРИФТОВ --- */
-@media (max-width: 1200px) {
-    .place-title { font-size: 34px !important; }
-    .description-txt { font-size: 24px !important; }
+/* Mobile */
+@media (max-width: 900px) {
+    .ticket-overlay {
+        padding-top: 24px;
+        padding-bottom: 24px;
+        align-items: flex-start;
+    }
+
+    .ticket-modal {
+        max-height: calc(100vh - 48px);
+        overflow: auto;
+    }
+
+    .hall-svg {
+        height: 70vh;
+        min-height: 420px;
+    }
 }
 
-@media (max-width: 768px) {
-    .main-title-text { font-size: 24px !important; }
-    .description-title { font-size: 28px !important; padding-bottom: 80px !important; }
-    .description-txt { font-size: 18px !important; }
-    .place-title { font-size: 26px !important; }
-    .place-time { font-size: 24px !important; }
-}
+@media (max-width: 898px) {
+    .main-title {
+        font-size: 15px;
+    }
 
-/* --- ЛОГИКА СЕТКИ И СЛАЙДЕРА --- */
+    .place-title {
+        font-size: 30px;
+    }
 
-/* Десктоп и Планшет: используем ваши исходные Grid-стили */
-@media (min-width: 680px) {
-    .swiper-pagination { display: none !important; }
-}
+    .description-txt {
+        font-size: 20px;
+    }
 
-/* Мобильный: Активируем Swiper (до 650px) */
-@media (max-width: 679px) {
     .guests {
-        overflow: hidden !important;
-        padding-bottom: 150px !important; /* Место для точек */
+        padding-bottom: 100px;
     }
 
-    .guest-items.swiper-wrapper {
-        display: flex !important;
-        flex-direction: row !important;
-        grid-template-columns: none !important;
+    .place {
+        padding-top: 100px;
     }
 
-    .guest-item.swiper-slide {
-        width: 100% !important;
-        margin: 0 !important;
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        transform: translate3d(0, 0, 0) !important;
-    }
-
-    .guest-item-img, .guest-item-img1, .guest-item-img img {
-        width: 260px !important;
-        height: 260px !important;
-        margin-bottom: 20px !important;
+    .place-time {
+        font-size: 25px;
     }
 }
 
-/* --- СТИЛИЗАЦИЯ ТОЧЕК (ПАГИНАЦИЯ) --- */
-.swiper-pagination {
-    bottom: 40px !important;
-    position: absolute !important;
+@media (max-width: 895px) {
+
+    .links ul li {
+        margin: 0 10px; /* Уменьшаем расстояние между ссылками */
+    }
+
+    .link {
+        font-size: 16px; /* Немного уменьшаем шрифт */
+    }
+
+    .guests h2 {
+        font-size: 20px;
+    }
 }
 
-.swiper-pagination-bullet {
-    background: rgba(255, 255, 255, 0.4) !important;
-    opacity: 1 !important;
+@media (max-width: 781px) {
+    .place-title {
+        font-size: 25px;
+    }
 }
 
-.swiper-pagination-bullet-active {
-    background: #fff !important;
-    width: 30px !important; /* Форма пилюли */
-    border-radius: 5px !important;
-    transition: width 0.3s ease;
+
+/* Мобильные устройства (до 768px) */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column; /* Элементы встают друг под друга */
+        gap: 25px; /* Расстояние между лого, ссылками и соцсетями */
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
+    .logo {
+        width: 100px;
+        height: 100px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .logo img {
+        width: 100px;
+        height: auto;
+    }
+
+    .links ul {
+        flex-wrap: wrap; /* Если ссылки не влезут в строку, они перенесутся */
+        justify-content: center;
+        gap: 10px 20px; /* Отступы между строками и ссылками */
+    }
+
+    .links ul li {
+        margin: 0; /* Убираем жесткие margin, так как используем gap */
+    }
+
+    .link {
+        font-size: 16px;
+    }
+
+    .socials ul {
+        gap: 15px;
+    }
+
+    .social-item {
+        margin-right: 0; /* Убираем старый отступ в пользу gap */
+    }
+}
+
+@media (max-width: 682px) {
+    .main-title {
+        font-size: 10px;
+    }
+
+    .guests {
+        padding-top: 100px;
+    }
+
+    .guests h2 {
+        font-size: 15px;
+    }
+
+    .place-title {
+        font-size: 20px;
+    }
+
+    .place-address {
+        font-size: 15px;
+    }
+
+    .place-time {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 539px) {
+    .description-txt {
+        font-size: 16px;
+    }
+
+    .guests {
+        padding-bottom: 50px;
+    }
+
+    .guests h2 {
+        font-size: 12px;
+    }
+
+    .place {
+        padding-top: 50px;
+    }
+
+    .place-title {
+        font-size: 15px;
+    }
+
+    .place-address {
+        font-size: 10px;
+    }
+
+    .place-time {
+        font-size: 15px;
+        margin-bottom: 50px;
+    }
+
+    .btn {
+        padding: 12px 21px;
+        font-size: 12px;
+    }
+}
+
+/* Совсем маленькие экраны (до 480px) */
+@media (max-width: 480px) {
+    .links ul {
+        display: grid;
+        grid-template-columns: 1fr 1fr; /* Меню в два столбика для удобства */
+        width: 100%;
+        text-align: center;
+    }
+
+    .links ul li {
+        padding: 5px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Легкая разделительная черта */
+    }
+
+    .links ul li:hover {
+        border-bottom: 1px solid white;
+    }
+    .hall-svg {
+        height: 62vh;
+        min-height: 380px;
+    }
 }
