@@ -218,23 +218,15 @@
 
 /* Совсем маленькие экраны (до 480px) */
 @media (max-width: 480px) {
-    .links ul {
-        display: grid;
-        grid-template-columns: 1fr 1fr; /* Меню в два столбика для удобства */
-        width: 100%;
-        text-align: center;
+    .ticket-overlay { padding: 16px 12px; }
+    .ticket-body { padding: 12px 12px 14px 12px; }
+
+    .ticket-hall {
+        padding: 10px; /* внутренние отступы для схемы */
     }
 
-    .links ul li {
-        padding: 5px 0;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Легкая разделительная черта */
-    }
-
-    .links ul li:hover {
-        border-bottom: 1px solid white;
-    }
     .hall-svg {
-        height: 62vh;
-        min-height: 380px;
+        height: 44vh;      /* меньше по высоте */
+        min-height: 280px; /* чтобы не схлопывалась совсем */
     }
 }
