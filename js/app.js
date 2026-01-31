@@ -1,7 +1,50 @@
-// ...твой текущий js/app.js...
-// Я показываю полностью рабочую версию, но главное — изменение внутри drawSeatCellAt()
+document.addEventListener('DOMContentLoaded', () => {
 
-// Вставь/замени целиком файл, чтобы не искать вручную
+    // =========================
+    // Guests Swiper (<=699px)
+    // =========================
+    let guestsSwiper = null;
+
+    function initGuestsSwiper() {
+        const el = document.getElementById('guestsSwiper');
+        if (!el || typeof Swiper === 'undefined') return;
+
+        const need = window.matchMedia('(max-width: 699px)').matches;
+
+        if (need && !guestsSwiper) {
+            guestsSwiper = new Swiper('#guestsSwiper', {
+                slidesPerView: 1,
+                spaceBetween: 16,
+                loop: false,
+                observer: true,
+                observeParents: true,
+                watchOverflow: true,
+                pagination: {
+                    el: '.guests-pagination',
+                    clickable: true
+                },
+                on: {
+                    init() {
+                        requestAnimationFrame(() => guestsSwiper && guestsSwiper.update());
+                    }
+                }
+            });
+
+            setTimeout(() => guestsSwiper && guestsSwiper.update(), 150);
+        }
+
+        if (!need && guestsSwiper) {
+            guestsSwiper.destroy(true, true);
+            guestsSwiper = null;
+        }
+    }
+
+    initGuestsSwiper();
+    window.addEventListener('resize', initGuestsSwiper);
+    window.addEventListener('load', () => guestsSwiper && guestsSwiper.update());
+});
+
+
 document.addEventListener('DOMContentLoaded', () => {
     const overlay = document.getElementById('ticketOverlay');
     const closeBtn = overlay?.querySelector('.ticket-close');
@@ -88,7 +131,20 @@ document.addEventListener('DOMContentLoaded', () => {
         const minTy = viewH - panZoom.scale * viewH;
         panZoom.tx = clamp(panZoom.tx, minTx, 0);
         panZoom.ty = clamp(panZoom.ty, minTy, 0);
-        viewportG.setAttribute('transform', `matrix(${panZoom.scale} 0 0 ${panZoom.scale} ${panZoom.tx} ${panZoom.ty})`);
+        viewportG.setAttribute(
+            'transform',
+            `matrix(${panZoom.scale} 0 0 ${panZoom.scale} ${panZoom.tx} ${panZoom.ty})`
+        );
+    }
+
+    // ✅ НОВОЕ: при открытии показываем схему полностью (без автозума и без смещения)
+    function resetPanZoomView() {
+        if (!viewportG) return;
+        parseViewBox();
+        panZoom.scale = 1;
+        panZoom.tx = 0;
+        panZoom.ty = 0;
+        applyTransform();
     }
 
     function clientToSvgPoint(clientX, clientY) {
@@ -109,12 +165,6 @@ document.addEventListener('DOMContentLoaded', () => {
         panZoom.ty = panZoom.ty + (oldScale - newScale) * point.y;
         panZoom.scale = newScale;
         applyTransform();
-    }
-
-    function setInitialZoomForMobileOnce() {
-        const isMobile = window.matchMedia('(max-width: 900px)').matches;
-        if (!isMobile) return;
-        zoomAt({x: viewW / 2, y: viewH / 2}, 1.35);
     }
 
     function setupPanZoom() {
@@ -396,14 +446,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         updateSummary();
 
-        parseViewBox();
-        panZoom.scale = 1;
-        panZoom.tx = 0;
-        panZoom.ty = 0;
-        applyTransform();
-
+        // ✅ ВАЖНО: больше НЕ делаем автозум. Ставим “fit” и всё.
+        resetPanZoomView();
         setupPanZoom();
-        setInitialZoomForMobileOnce();
 
         function drawSeatInMainGrid(seatObj) {
             const x = startX + (seatObj.seat - 1) * (cellW + cellGap);
@@ -421,8 +466,6 @@ document.addEventListener('DOMContentLoaded', () => {
             r.setAttribute('y', String(y));
             r.setAttribute('width', String(cellW));
             r.setAttribute('height', String(cellH));
-
-            // ✅ СКРУГЛЕНИЕ ДЕЛАЕМ АТРИБУТАМИ SVG, а не CSS
             r.setAttribute('rx', '2');
             r.setAttribute('ry', '2');
 
@@ -462,12 +505,16 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!overlay) return;
         overlay.hidden = false;
         document.body.style.overflow = 'hidden';
+
         if (!rendered) {
             renderHall();
             rendered = true;
         } else {
             updateSummary();
+            // ✅ каждый раз при открытии показываем схему целиком
+            resetPanZoomView();
         }
+
         closeBtn?.focus();
     }
 

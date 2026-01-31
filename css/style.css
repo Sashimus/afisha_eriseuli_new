@@ -129,8 +129,7 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 80px;
-    width: 100% !important;
-    transform: none !important;
+    width: 100%;
 }
 
 .guest-item {
@@ -444,4 +443,115 @@ body {
     stroke: rgba(0, 0, 0, 0.75);
     stroke-width: 2.5;
     fill: none;
+}
+
+.guests-pagination {
+    text-align: center;
+    margin-top: 22px;      /* было 18 — опускаем ниже */
+    padding-bottom: 6px;   /* небольшой запас */
+}
+
+.guests-pagination .swiper-pagination-bullet {
+    width: 10px;
+    height: 10px;
+    opacity: 0.45;
+}
+
+.guests-pagination .swiper-pagination-bullet-active {
+    opacity: 1;
+}
+
+/* Чтобы слайды не "плясали" по высоте на мобиле */
+.guests-swiper {
+    width: 100%;
+}
+.footer {
+    margin-top: 60px;
+    padding: 40px 0;
+    background: rgba(0, 0, 0, 0.18);
+    border-top: 1px solid rgba(255,255,255,0.12);
+}
+
+.footer-inner {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 22px;
+    align-items: center;
+}
+
+.footer-col {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.footer-title {
+    font-weight: 800;
+    font-size: 16px;
+    opacity: 0.95;
+}
+
+.footer-text {
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+.footer-link {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 16px;
+    display: inline-flex;
+    width: fit-content;
+    border-bottom: 1px solid rgba(255,255,255,0.25);
+}
+
+.footer-link:hover {
+    border-bottom-color: rgba(255,255,255,0.9);
+}
+
+.footer-copy {
+    text-align: center;
+    align-items: center;
+}
+
+.footer-copy-link {
+    color: rgba(255,255,255,0.9);
+    text-decoration: none;
+    font-size: 14px;
+    line-height: 1.3;
+}
+
+.footer-copy-link:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+.footer-socials {
+    align-items: center;
+    text-align: center;
+}
+
+.footer-socials-list {
+    list-style: none;
+    display: flex;
+    gap: 14px;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-social-item img {
+    width: 28px;
+    height: 28px;
+    display: block;
+    opacity: 0.95;
+    transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+.footer-social-item img:hover {
+    transform: translateY(-2px);
+    opacity: 1;
 }

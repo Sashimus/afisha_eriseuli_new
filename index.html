@@ -11,7 +11,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
           rel="stylesheet">
 
-    <!-- ВАЖНО: у тебя файлы лежат в assets/css -->
     <link rel="stylesheet" href="css/animate.css">
     <link rel="stylesheet" href="css/swiper-bundle.min.css">
     <link rel="stylesheet" href="css/style.css">
@@ -29,7 +28,7 @@
             <li><a href="#about" class="link">О нас</a></li>
             <li><a href="#guests" class="link">Почетные гости</a></li>
             <li><a href="#pay" class="link">Купить билеты</a></li>
-            <li><a href="#pay" class="link">Контакты</a></li>
+            <li><a href="#contacts" class="link">Контакты</a></li>
         </ul>
     </nav>
     <div class="socials">
@@ -63,43 +62,55 @@
     <section class="container">
         <div id="guests" class="guests">
             <h2>Почетные гости юбилейного концерта ансамбля Эрисеули</h2>
-            <div class="guest-items">
-                <div class="guest-item">
-                    <div class="guest-item-img">
-                        <img src="assets/img/guest1.jpg" alt="guest1">
+
+            <!-- Swiper container (на десктопе просто "прозрачная" обёртка, на мобиле станет слайдером) -->
+            <div class="guests-swiper swiper" id="guestsSwiper">
+                <div class="guest-items swiper-wrapper">
+                    <div class="guest-item swiper-slide">
+                        <div class="guest-item-img">
+                            <img src="assets/img/guest1.jpg" alt="guest1">
+                        </div>
+                        <div class="guest-item-text">Ираклий Нишнианидзе</div>
                     </div>
-                    <div class="guest-item-text">Ираклий Нишнианидзе</div>
-                </div>
-                <div class="guest-item">
-                    <div class="guest-item-img">
-                        <img src="assets/img/guest2.jpg" alt="guest2">
+
+                    <div class="guest-item swiper-slide">
+                        <div class="guest-item-img">
+                            <img src="assets/img/guest2.jpg" alt="guest2">
+                        </div>
+                        <div class="guest-item-text">Образцовый коллектив Хореографический ансамбль «Мерани»</div>
                     </div>
-                    <div class="guest-item-text">Образцовый коллектив Хореографический ансамбль «Мерани»</div>
-                </div>
-                <div class="guest-item">
-                    <div class="guest-item-img">
-                        <img src="assets/img/guest3.jpg" alt="guest3">
+
+                    <div class="guest-item swiper-slide">
+                        <div class="guest-item-img">
+                            <img src="assets/img/guest3.jpg" alt="guest3">
+                        </div>
+                        <div class="guest-item-text">Вокальная студия Эки Саджая</div>
                     </div>
-                    <div class="guest-item-text">Вокальная студия Эки Саджая</div>
-                </div>
-                <div class="guest-item">
-                    <div class="guest-item-img">
-                        <img src="assets/img/guest4.jpg" alt="guest4">
+
+                    <div class="guest-item swiper-slide">
+                        <div class="guest-item-img">
+                            <img src="assets/img/guest4.jpg" alt="guest4">
+                        </div>
+                        <div class="guest-item-text">Окапала Сакартвело</div>
                     </div>
-                    <div class="guest-item-text">Окапала Сакартвело</div>
-                </div>
-                <div class="guest-item">
-                    <div class="guest-item-img">
-                        <img src="assets/img/guest5.png" alt="guest5">
+
+                    <div class="guest-item swiper-slide">
+                        <div class="guest-item-img">
+                            <img src="assets/img/guest5.png" alt="guest5">
+                        </div>
+                        <div class="guest-item-text">Ансамбль грузинского танца «Лазика»</div>
                     </div>
-                    <div class="guest-item-text">Ансамбль грузинского танца «Лазика»</div>
-                </div>
-                <div class="guest-item">
-                    <div class="guest-item-img">
-                        <img src="assets/img/guest6.jpg" alt="guest6">
+
+                    <div class="guest-item swiper-slide">
+                        <div class="guest-item-img">
+                            <img src="assets/img/guest6.jpg" alt="guest6">
+                        </div>
+                        <div class="guest-item-text">Образцовый коллектив Хореографический ансамбль «Побратимы»</div>
                     </div>
-                    <div class="guest-item-text">Образцовый коллектив Хореографический ансамбль «Побратимы»</div>
                 </div>
+
+                <!-- точки пагинации -->
+                <div class="swiper-pagination guests-pagination"></div>
             </div>
         </div>
 
@@ -144,7 +155,7 @@
                     Итого: <span id="totalPrice">0</span> ₽
                 </div>
 
-                <input id="buyerEmail" class="ticket-email" type="email" placeholder="Email для билета" />
+                <input id="buyerEmail" class="ticket-email" type="email" placeholder="Email для билета"/>
 
                 <button id="payBtn" class="btn ticket-pay" type="button" disabled>Перейти к оплате</button>
 
@@ -155,8 +166,42 @@
         </div>
     </div>
 </div>
+<footer class="footer" id="contacts">
+    <div class="footer-inner">
+        <div class="footer-col footer-contacts">
+            <div class="footer-title">Контакты</div>
+            <div class="footer-text">Кухианидзе Венедикт Автандилович</div>
+            <a class="footer-link" href="tel:+79254445929">+7 (925) 444-59-29</a>
+        </div>
 
-<!-- ВАЖНО: у тебя файлы лежат в assets/js -->
+        <div class="footer-col footer-copy">
+            <a class="footer-copy-link" href="#" target="_self" rel="nofollow">
+                © <span id="footerYear"></span> Эрисеули. Все права защищены.
+            </a>
+        </div>
+
+        <div class="footer-col footer-socials">
+            <div class="footer-title">Мы в соцсетях</div>
+            <ul class="footer-socials-list">
+                <li class="footer-social-item">
+                    <a href="#" aria-label="Instagram">
+                        <img src="assets/img/insta.svg" alt="instagram">
+                    </a>
+                </li>
+                <li class="footer-social-item">
+                    <a href="#" aria-label="Telegram">
+                        <img src="assets/img/telega.svg" alt="telegram">
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Автогод
+    document.getElementById('footerYear').textContent = new Date().getFullYear();
+</script>
 <script src="js/wow.min.js"></script>
 <script src="js/swiper-bundle.min.js"></script>
 <script src="js/app.js"></script>

@@ -59,6 +59,35 @@
         height: 70vh;
         min-height: 420px;
     }
+    .footer-inner {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .footer-socials {
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-copy {
+        order: 3;
+    }
+
+    .footer-contacts {
+        order: 1;
+    }
+
+    .footer-socials {
+        order: 2;
+    }
+
+    .footer-link {
+        margin: 0 auto;
+    }
+
+    .footer-socials-list {
+        justify-content: center;
+    }
 }
 
 @media (max-width: 898px) {
@@ -154,6 +183,79 @@
     }
 }
 
+@media (max-width: 699px) {
+    #guestsSwiper {
+        overflow: hidden;
+        width: 100%;
+    }
+
+    /* ВАЖНО: это и есть причина “уезжает” — gap от grid остаётся.
+       Поэтому: отключаем grid, и обязательно gap=0 */
+    #guestsSwiper .guest-items,
+    #guestsSwiper .swiper-wrapper {
+        display: flex !important;
+        gap: 0 !important;
+        grid-template-columns: none !important;
+        transform: none; /* Swiper сам ставит transform inline, мы не мешаем */
+    }
+
+    /* Swiper сам задаёт ширины слайдов inline — НЕ трогаем width/flex! */
+    #guestsSwiper .swiper-slide {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        box-sizing: border-box;
+    }
+
+    #guestsSwiper .guest-item {
+        width: 100%;
+        margin: 0 auto;
+        padding: 0 12px;
+        box-sizing: border-box;
+    }
+
+    #guestsSwiper .guest-item-img {
+        width: 260px;
+        height: 260px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin: 0 auto 18px auto;
+    }
+
+    #guestsSwiper .guest-item-img img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+        border-radius: 0 !important;
+        display: block !important;
+    }
+
+    #guestsSwiper .guest-item-text {
+        text-align: center;
+        max-width: 320px;
+        margin: 0 auto;
+    }
+
+    #guestsSwiper .guests-pagination {
+        margin-top: 24px;
+    }
+
+    #guestsSwiper .swiper-pagination {
+        position: static !important;
+        transform: none !important;
+        width: 100%;
+        margin-top: 18px;
+        padding-bottom: 6px;
+    }
+
+    /* на всякий — если тема Swiper добавляет bottom/left */
+    #guestsSwiper .swiper-horizontal > .swiper-pagination-bullets,
+    #guestsSwiper .swiper-pagination-bullets.swiper-pagination-horizontal {
+        bottom: auto !important;
+        left: auto !important;
+    }
+}
+
 @media (max-width: 682px) {
     .main-title {
         font-size: 10px;
@@ -218,15 +320,40 @@
 
 /* Совсем маленькие экраны (до 480px) */
 @media (max-width: 480px) {
-    .ticket-overlay { padding: 16px 12px; }
-    .ticket-body { padding: 12px 12px 14px 12px; }
+    .ticket-overlay {
+        padding: 16px 12px;
+    }
+
+    .ticket-body {
+        padding: 12px 12px 14px 12px;
+    }
 
     .ticket-hall {
         padding: 10px; /* внутренние отступы для схемы */
     }
 
     .hall-svg {
-        height: 44vh;      /* меньше по высоте */
+        height: 44vh; /* меньше по высоте */
         min-height: 280px; /* чтобы не схлопывалась совсем */
+    }
+    .footer {
+        padding: 28px 0;
+    }
+
+    .footer-inner {
+        padding: 0 12px;
+        gap: 16px;
+    }
+
+    .footer-title {
+        font-size: 15px;
+    }
+
+    .footer-link {
+        font-size: 15px;
+    }
+
+    .footer-copy-link {
+        font-size: 13px;
     }
 }
